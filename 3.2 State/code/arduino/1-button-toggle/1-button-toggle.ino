@@ -10,9 +10,8 @@ void setup() {
 }
 
 void loop() {
-  int val = digitalRead(BUTTON_PIN);
- 
-  if ((val == LOW) && (oldVal == HIGH)) {
+  int val = digitalRead(BUTTON_PIN); 
+  if (val == LOW && oldVal == HIGH) {
     state = 1 - state;
     delay(10);
   }
@@ -23,5 +22,4 @@ void loop() {
   } else {
     digitalWrite(LED_PIN, LOW);
   }
-  oldVal = val;
 }
