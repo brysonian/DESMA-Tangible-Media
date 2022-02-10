@@ -1,5 +1,5 @@
-const int BUTTON_PIN = 9;
-const int LED_PIN = 13;
+const int BUTTON_PIN = 12;
+const int LED_PIN = 9;
 
 void setup() {
   pinMode(LED_PIN, OUTPUT);
