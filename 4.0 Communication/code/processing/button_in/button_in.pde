@@ -24,5 +24,6 @@ void draw() {
 
 void serialEvent(Serial port) {
   val = port.read();
+  println(val);
 }
   

@@ -1,4 +1,4 @@
-const int PIN = 10;
+const int PIN = 11;
 
 int val = 0;
 
@@ -11,9 +11,9 @@ void setup() {
 void loop() {
   val = digitalRead(PIN);
   if (val == LOW) {
-    Serial.write(1);
+    Serial.write(true);
   } else {
-    Serial.write(0);
+    Serial.write(false);
   }
   delay(2);
 }
