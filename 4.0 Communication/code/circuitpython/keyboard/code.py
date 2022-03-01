@@ -1,19 +1,28 @@
-#include "Keyboard.h"
+import time
+import board
+import digitalio
+import usb_hid
 
-const int BUTTON_PIN = 11;
+from adafruit_hid.keyboard import Keyboard
+from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
 
-void setup() {
-  pinMode(BUTTON_PIN, INPUT_PULLUP);
+button = digitalio.DigitalInOut(board.D11)
+button.direction = digitalio.Direction.INPUT
+button.pull = digitalio.Pull.UP
 
-  // initialize control as a keyboard
-  Keyboard.begin();
-}
+led = digitalio.DigitalInOut(board.LED)
+led.direction = digitalio.Direction.OUTPUT
 
-void loop() {
-  int val = digitalRead(BUTTON_PIN);
+time.sleep(1)
+keyboard = Keyboard(usb_hid.devices)
+keyboard_layout = KeyboardLayoutUS(keyboard)
 
-  if (val == LOW) {
-    Keyboard.print("x");
-    delay(100);
-  }
-} 
+while True:
+  if not button.value:
+    led.value = True
+    keyboard_layout.write("x")
+  else:
+    led.value = False
+    keyboard.release_all()
+  time.sleep(0.01)
+
