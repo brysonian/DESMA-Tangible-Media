@@ -13,7 +13,9 @@ void loop() {
   int val = digitalRead(BUTTON_PIN);
 
   if (val == LOW) {
-    Keyboard.print("x");
+    Keyboard.press('x');
     delay(100);
+  } else {
+    Keyboard.release('x');
   }
 } 
